@@ -1,0 +1,85 @@
+# Credenciais e variáveis de ambiente
+.env
+.env.*
+*.env
+*.secret
+*.secrets
+secrets/
+secret/
+credentials/
+credentials.*
+
+# Chaves, certificados privados e autenticação
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+id_rsa*
+id_ed25519*
+authorized_keys
+known_hosts
+*.kubeconfig
+
+# Bancos, dumps e estado persistente
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+*.rdb
+*.aof
+*.bak
+*.backup
+*.snapshot
+
+# Backups e arquivos compactados
+backups/
+backup-data/
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.gz
+
+# Logs, sessões, cookies e caches
+*.log
+logs/
+sessions/
+session/
+cookies/
+*.cookie
+.cache/
+cache/
+
+# Configurações locais e de produção
+config.local.*
+config.production.*
+compose.override.yaml
+docker-compose.override.yml
+inventory.local.*
+
+# Arquivos administrativos sensíveis
+RSFB-ACESSOS-*
+*-credentials.txt
+*-passwords.txt
+
+# Dependências e artefatos
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+coverage/
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/

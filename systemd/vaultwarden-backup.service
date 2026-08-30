@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup consistente do Vaultwarden
+Wants=docker.service
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/vaultwarden/backup-vaultwarden.sh
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7

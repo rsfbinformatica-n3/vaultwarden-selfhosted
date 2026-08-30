@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup diário do Vaultwarden
+
+[Timer]
+OnCalendar=*-*-* 04:30:00 UTC
+RandomizedDelaySec=5m
+Persistent=true
+Unit=vaultwarden-backup.service
+
+[Install]
+WantedBy=timers.target

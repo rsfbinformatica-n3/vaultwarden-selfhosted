@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitor temporário do primeiro cadastro Vaultwarden
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=10s
+Unit=vaultwarden-signup-guard.service
+
+[Install]
+WantedBy=timers.target

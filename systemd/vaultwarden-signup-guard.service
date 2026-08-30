@@ -1,0 +1,7 @@
+[Unit]
+Description=Desabilitar cadastro do Vaultwarden após a primeira conta
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/vaultwarden/disable-signups-after-first-user.sh

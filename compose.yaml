@@ -1,0 +1,30 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:1.37.2@sha256:094b5689ed81549bd293418395c7cf495ae9d960fc2d4928cef2083ef913d912
+    container_name: vaultwarden
+    restart: unless-stopped
+    user: "1000:1000"
+    environment:
+      DOMAIN: "https://vault.example.com"   # substitua pelo domínio da sua instância
+      SIGNUPS_ALLOWED: "true"               # altere para "false" após a primeira conta
+      INVITATIONS_ALLOWED: "false"
+      SHOW_PASSWORD_HINT: "false"
+      TZ: "America/Sao_Paulo"
+      LOG_LEVEL: "info"
+    volumes:
+      - ./data:/data
+    ports:
+      - "127.0.0.1:8222:80"                 # bind somente local; proxy via Tailscale
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1/alive"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 256
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
