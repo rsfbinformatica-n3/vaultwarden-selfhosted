@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Diagrama de arquitetura — vaultwarden-selfhosted</title>
+<style>
+  :root { color-scheme: dark; --bg:#07111f; --panel:#0d1b2e; --line:#42d3ff; --green:#66e3a1; --gold:#e3c96b; --text:#eaf2ff; --muted:#9bb3cc; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(circle at 25% 10%,#16345c 0,#07111f 42%,#040812 100%); font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); }
+  main { min-height:100vh; display:grid; place-items:center; padding:24px; }
+  .frame { width:min(1180px,100%); background:rgba(5,12,22,.82); border:1px solid rgba(102,227,161,.22); border-radius:28px; box-shadow:0 24px 80px rgba(0,0,0,.45); padding:22px; }
+  .note { margin:12px 8px 0; color:var(--muted); font-size:14px; line-height:1.45; }
+  svg { width:100%; height:auto; display:block; }
+  text { fill:var(--text); font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; }
+  .muted { fill:var(--muted); }
+  .box rect { fill:rgba(13,27,46,.96); stroke:rgba(66,211,255,.55); stroke-width:2; }
+  .box.primary rect { stroke:var(--green); stroke-width:3; }
+  .box.storage rect { stroke:var(--gold); }
+  .chip rect { fill:rgba(227,201,107,.10); stroke:rgba(227,201,107,.42); }
+  .chip text { font-size:15px; font-weight:650; fill:#ffe9a6; }
+  .label { font-size:16px; font-weight:700; }
+  .small { font-size:13px; fill:var(--muted); }
+  .title { font-size:34px; font-weight:800; letter-spacing:-.02em; }
+  .subtitle { font-size:17px; fill:var(--muted); }
+  .arrow { stroke:var(--line); stroke-width:3; fill:none; marker-end:url(#arrow); }
+  .arrow.alt { stroke:var(--green); }
+  .caption { font-size:13px; fill:#b8cdf0; }
+</style>
+</head>
+<body>
+<main>
+<section class="frame" aria-label="Diagrama de arquitetura do projeto vaultwarden-selfhosted">
+<svg viewBox="0 0 1180 760" role="img" aria-labelledby="title desc">
+  <title id="title">Diagrama de arquitetura — vaultwarden-selfhosted</title>
+  <desc id="desc">Diagrama sintético do projeto, mostrando usuário, repositório, aplicação, dados, automação e operação.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#42d3ff"/></marker></defs>
+  <text class="title" x="72" y="70">vaultwarden-selfhosted</text>
+  <text class="subtitle" x="72" y="101">Cofre auto-hospedado · repositório public · atualizado em 2026-09-17</text>
+  <text class="small" x="72" y="132">Cofre de senhas auto-hospedado compatível com Bitwarden (Vaultwarden) com Tailscale, HTTPS e backup criptografado em Restic.</text>
+
+  <g class="box" transform="translate(72 210)"><rect rx="22" width="190" height="100"/><text class="label" x="95" y="44" text-anchor="middle">Usuários</text><text class="small" x="95" y="70" text-anchor="middle">operador / cliente</text></g>
+  <g class="box primary" transform="translate(342 210)"><rect rx="22" width="210" height="100"/><text class="label" x="105" y="42" text-anchor="middle">Projeto</text><text class="small" x="105" y="70" text-anchor="middle">código + configuração</text></g>
+  <g class="box" transform="translate(642 210)"><rect rx="22" width="210" height="100"/><text class="label" x="105" y="42" text-anchor="middle">Serviço / app</text><text class="small" x="105" y="70" text-anchor="middle">execução principal</text></g>
+  <g class="box storage" transform="translate(932 210)"><rect rx="22" width="190" height="100"/><text class="label" x="95" y="42" text-anchor="middle">Dados</text><text class="small" x="95" y="70" text-anchor="middle">persistência</text></g>
+
+  <path class="arrow" d="M262 260 H342"/><path class="arrow" d="M552 260 H642"/><path class="arrow" d="M852 260 H932"/>
+
+  <g class="box" transform="translate(342 380)"><rect rx="22" width="210" height="92"/><text class="label" x="105" y="40" text-anchor="middle">GitHub</text><text class="small" x="105" y="64" text-anchor="middle">versionamento</text></g>
+  <g class="box" transform="translate(642 380)"><rect rx="22" width="210" height="92"/><text class="label" x="105" y="40" text-anchor="middle">Automação</text><text class="small" x="105" y="64" text-anchor="middle">scripts / workflows</text></g>
+  <g class="box" transform="translate(932 380)"><rect rx="22" width="190" height="92"/><text class="label" x="95" y="40" text-anchor="middle">Operação</text><text class="small" x="95" y="64" text-anchor="middle">logs / backup</text></g>
+
+  <path class="arrow alt" d="M447 310 V380"/><path class="arrow alt" d="M747 310 V380"/><path class="arrow alt" d="M1027 310 V380"/>
+  <text class="caption" x="72" y="510">Tecnologias e responsabilidades detectadas no repositório</text>
+  <g class="chip"><rect x="95" y="545" rx="16" width="210" height="42"/><text x="200" y="572" text-anchor="middle">Docker / Compose</text></g><g class="chip"><rect x="335" y="545" rx="16" width="210" height="42"/><text x="440" y="572" text-anchor="middle">Vaultwarden</text></g><g class="chip"><rect x="575" y="545" rx="16" width="210" height="42"/><text x="680" y="572" text-anchor="middle">Restic / rsync</text></g>
+</svg>
+<p class="note">Diagrama gerado de forma determinística para documentação do repositório. Ele resume a arquitetura e os pontos de operação sem expor segredos, tokens ou dados sensíveis.</p>
+</section>
+</main>
+</body>
+</html>
